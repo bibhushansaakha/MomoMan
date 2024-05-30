@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0600"
+   LastUpgradeVersion = "1530"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "E4B69B5A0A3A1756003C02F2"
-               BuildableName = "MomoMan.app"
-               BlueprintName = "MomoMan"
-               ReferencedContainer = "container:MomoMan.xcodeproj">
+               BuildableName = "momoman.app"
+               BlueprintName = "momoman"
+               ReferencedContainer = "container:momoman.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -31,9 +31,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "E4B69B5A0A3A1756003C02F2"
-            BuildableName = "MomoMan.app"
-            BlueprintName = "MomoMan"
-            ReferencedContainer = "container:MomoMan.xcodeproj">
+            BuildableName = "momoman.app"
+            BlueprintName = "momoman"
+            ReferencedContainer = "container:momoman.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <Testables>
@@ -54,9 +54,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "E4B69B5A0A3A1756003C02F2"
-            BuildableName = "MomoMan.app"
-            BlueprintName = "MomoMan"
-            ReferencedContainer = "container:MomoMan.xcodeproj">
+            BuildableName = "momoman.app"
+            BlueprintName = "momoman"
+            ReferencedContainer = "container:momoman.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -71,9 +71,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "E4B69B5A0A3A1756003C02F2"
-            BuildableName = "MomoMan.app"
-            BlueprintName = "MomoMan"
-            ReferencedContainer = "container:MomoMan.xcodeproj">
+            BuildableName = "momoman.app"
+            BlueprintName = "momoman"
+            ReferencedContainer = "container:momoman.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
