@@ -35,7 +35,7 @@ CHEF_COLOR_GREEN = (0, 1, 0)  # Green
 
 # Speed and randomness settings
 MOMOMAN_SPEED = 200  # milliseconds per move
-CHEF_SPEED = 2500  # milliseconds per move
+CHEF_SPEED = 250  # milliseconds per move
 CHEF_RANDOMNESS_LOW = 0.1  # low randomness for some chefs
 CHEF_RANDOMNESS_HIGH = 0.4  # high randomness for other chefs
 
