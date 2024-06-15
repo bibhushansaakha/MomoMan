@@ -38,6 +38,8 @@ CHEF_SPEED = 500  # milliseconds per move
 CHEF_RANDOMNESS_LOW = 0.2  # low randomness for some chefs
 CHEF_RANDOMNESS_HIGH = 0.8  # high randomness for other chefs
 
+global grid_layout
+
 grid_layout = [
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
     [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
@@ -60,7 +62,33 @@ grid_layout = [
     [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
 ]
-grid = [[0] * GRID_SIZE for _ in range(GRID_SIZE)]
+
+
+def reset_grid():
+    grid_layout = [
+        [1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+        [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+        [1, 0, 2, 2, 2, 2, 0, 3, 0, 3, 0, 0, 2, 2, 2, 2, 0, 1, 0, 1],
+        [1, 0, 2, 'X', 'X', 2, 0, 3, 0, 3, 0, 0, 2, 'X', 'X', 2, 0, 1, 0, 1],
+        [1, 0, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 2, 2, 2, 2, 0, 1, 0, 1],
+        [1, 0, 0, 0, 0, 2, 0, 3, 3, 3, 3, 0, 0, 0, 0, 2, 0, 0, 0, 1],
+        [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1],
+        [1, 0, 2, 2, 2, 2, 0, 2, 2, 'X', 2, 2, 0, 2, 0, 2, 0, 2, 0, 1],
+        [1, 0, 0, 0, 0, 2, 0, 2, 'X', 'C', 'X', 1, 0, 2, 0, 2, 0, 1, 0, 1],
+        [0, 0, 1, 1, 0, 2, 0, 2, 'C', 'C', 'C', 1, 0, 2, 0, 2, 0, 0, 0, 0],
+        [1, 0, 1, 1, 0, 2, 0, 2, 1, 1, 1, 1, 0, 2, 0, 2, 0, 1, 0, 1],
+        [1, 0, 0, 0, 0, 2, 0, 0, 0, 'M', 0, 0, 0, 2, 0, 2, 0, 1, 0, 1],
+        [1, 0, 2, 2, 2, 2, 0, 2, 1, 0, 2, 2, 2, 2, 0, 2, 0, 1, 0, 1],
+        [1, 0, 2, 'X', 'X', 2, 0, 2, 1, 0, 2, 'X', 'X', 2, 0, 2, 0, 0, 0, 1],
+        [1, 0, 2, 'X', 'X', 2, 0, 2, 1, 0, 2, 'X', 'X', 2, 0, 2, 0, 1, 0, 1],
+        [1, 0, 2, 2, 2, 2, 0, 2, 1, 0, 2, 2, 2, 2, 0, 2, 0, 1, 0, 1],
+        [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+        [1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1],
+        [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+        [1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+    ]
+
+    grid = [[0] * GRID_SIZE for _ in range(GRID_SIZE)]
 
 
 def draw_grid():
@@ -241,7 +269,7 @@ momoman_pos = (9, 11)
 # Initial positions for four chefs
 chef_positions = [(10, 9), (8, 9), (10, 8), (8, 8)]
 points = 0
-lives = 4
+lives = 3
 momoman_mouth_open = True
 momoman_direction = 'RIGHT'
 momoman_target_pos = momoman_pos
@@ -258,16 +286,19 @@ def start_game():
     # Initial positions for four chefs
     chef_positions = [(10, 9), (8, 9), (10, 8), (8, 8)]
     points = 0
-    lives = 4
+    lives = 3
     momoman_mouth_open = True
     momoman_direction = 'RIGHT'
     momoman_target_pos = momoman_pos
-
+    reset_grid()
     # Main game loop
     momoman_last_move_time = 0
     chef_last_move_time = 0
     running = True
     while running:
+        if points == 181:
+            running = False
+            game_over_screen(points=points)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
@@ -338,7 +369,7 @@ def start_game():
                 lives -= 1
                 if lives == 0:
                     running = False  # End the game if MomoMan collides with a Chef
-                    game_over_screen()
+                    game_over_screen(points=points)
                 else:
                     momoman_pos = (9, 11)  # Reset MomoMan position
 
@@ -359,7 +390,10 @@ def game_over_screen(screen_width=800, screen_height=800, points=points):
     glColor3f(1, 1, 1)
 
     # Center "Game Over!"
-    text = "Game Over!"
+    if points == 181:
+        text = "You Win!"
+    else:
+        text = "Game Over!"
     text_width = len(text) * 9  # Approx width of each character in pixels
     x_position = (screen_width - text_width) / 2
     glRasterPos2f(x_position, 400)
@@ -389,6 +423,7 @@ def game_over_screen(screen_width=800, screen_height=800, points=points):
         for event in pygame.event.get():
             if event.type == pygame.KEYDOWN and event.key == pygame.K_RETURN:
                 lives = 3
+                reset_grid()
                 start_game()
             elif event.type == pygame.QUIT:
                 return False
